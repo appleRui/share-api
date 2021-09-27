@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,5 @@ use App\Http\Controllers\PostController;
 //     return $request->user();
 // });
 
-Route::apiResource('/v1/post', PostController::class)->only(['index', 'store', 'update', 'destroy']);
+Route::apiResource('/v1/post', PostController::class)->only(['index', 'store', 'update', 'destroy', 'show']);
+Route::apiResource('/v1/post.comments', CommentController::class)->only(['index', 'store', 'update', 'destroy']);
