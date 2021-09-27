@@ -22,8 +22,17 @@ class PostController extends Controller
         $post = new Post();
         $post->post = $request->post;
         $post->user_id = $request->user_id;
-        Log::info($post);
+        Log::info($request->post);
+        Log::info($post->post);
         $post->save();
+        return response()->json([
+            'data' => $post
+        ], 200);
+    }
+
+    public function show(Post $post)
+    {
+        //
         return response()->json([
             'data' => $post
         ], 200);
