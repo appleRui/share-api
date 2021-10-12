@@ -44,6 +44,8 @@ class PostController extends Controller
         //
         $post = Post::find($post->id);
         $post->delete();
+        $post->comments()->delete();
+        $post->likes()->delete();
         return response()->json(null, 200);
     }
 

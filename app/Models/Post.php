@@ -17,6 +17,11 @@ class Post extends Model
         return $this->hasMany('App\Models\Like');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
     public static $rules = array(
         'post' => 'required',
         'user_id' => 'required'

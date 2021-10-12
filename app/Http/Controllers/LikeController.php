@@ -34,7 +34,6 @@ class LikeController extends Controller
 
 
     public function hasLike(Request $request){
-        Log::info($request);
         $like = Like::where([['post_id', $request->post_id], ['user_id', $request->user_id]])->exists();
         if($like){
             $res = true;
