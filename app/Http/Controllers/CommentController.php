@@ -10,8 +10,8 @@ use Log;
 class CommentController extends Controller
 {
     //
-    public function index(){
-        $comments = Comment::all();
+    public function index(Request $request){
+        $comments = Comment::where('post_id', $request->post_id )->get();
         return response()->json([
             'data' => $comments
         ], 200);
@@ -24,8 +24,6 @@ class CommentController extends Controller
         $comment->content = $request->content;
         $comment->user_id = $post->user_id;
         $comment->post_id = $post->id;
-        Log::info($comment->content);
-        Log::info($comment);
         $comment->save();
         return response()->json([
             'data' => $comment
