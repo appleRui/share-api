@@ -11,6 +11,9 @@ class PostController extends Controller
     //
     public function index(){
         $posts = Post::all();
+        foreach($posts as $post){
+            $post->like_coute = Post::likeCount($post->id);
+        }
         return response()->json([
             'data' => $posts
         ], 200);
@@ -22,8 +25,6 @@ class PostController extends Controller
         $post = new Post();
         $post->post = $request->post;
         $post->user_id = $request->user_id;
-        Log::info($request->post);
-        Log::info($post->post);
         $post->save();
         return response()->json([
             'data' => $post
@@ -45,4 +46,5 @@ class PostController extends Controller
         $post->delete();
         return response()->json(null, 200);
     }
+
 }
